@@ -107,8 +107,9 @@ MEMDEBUG_ENABLE = True
 # limit memory usage of spider
 # MEMUSAGE_LIMIT_MB = 100
 
-# Enable my custom extension
-
+# Enable custom extension and setup
+MAILER_RCT_ENABLED = True
+MAILER_RCT = {}
 
 LOG_LEVEL = 'INFO'
 
@@ -123,9 +124,47 @@ ITEM_PIPELINES.update({
 })
 
 EXTENSIONS.update({
-    'jumiaSpiderr.customextensions.'
+    'jumiaSpiderr.customextensions.Mailer_Rct': 500
 })
 
+
+       ############## Proxy Setting ###################
+
+# Retry many times since proxies often fail
+RETRY_TIMES = 10
+# Retry on most error codes since proxies fail for different reasons
+RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+
+# DOWNLOADER_MIDDLEWARES = {
+#   'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
+#   'scrapy_proxies.RandomProxy': 100,
+#   'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+# }
+
+PROXY_SETTINGS = {
+  # Proxy list containing entries like
+  # http://host1:port
+  # http://username:password@host2:port
+  # http://host3:port
+  # ...
+  # if PROXY_SETTINGS[from_proxies_server] = True , proxy_list is server address (ref https://github.com/qiyeboy/IPProxyPool and https://github.com/awolfly9/IPProxyTool )
+  # Only support http(ref https://github.com/qiyeboy/IPProxyPool#%E5%8F%82%E6%95%B0)
+  # list : ['http://localhost:8000?protocol=0'],
+  'list':['/path/to/proxy/list.txt'],
+
+  # disable proxy settings and  use real ip when all proxies are unusable
+  'use_real_when_empty':False,
+  'from_proxies_server':False,
+
+  # If proxy mode is 2 uncomment this sentence :
+  # 'custom_proxy': "http://host1:port",
+
+  # Proxy mode
+  # 0 = Every requests have different proxy
+  # 1 = Take only one proxy from the list and assign it to every requests
+  # 2 = Put a custom proxy to use in the settings
+  'mode':0
+}
 '''
 #################### Personal Settings ####################
 '''
