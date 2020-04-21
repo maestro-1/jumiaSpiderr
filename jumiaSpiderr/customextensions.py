@@ -5,7 +5,7 @@ from email.message import EmailMessage
 import sqlite3
 import os
 import json
-import numpy as np
+import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 
 
