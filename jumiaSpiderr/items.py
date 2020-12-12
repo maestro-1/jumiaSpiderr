@@ -11,4 +11,10 @@ import scrapy
 class JumiaspiderrItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    
+    item_name = scrapy.Field()
+    discount_price = scrapy.Field()
+    actual_price = scrapy.Field()
+    number_of_ratings = scrapy.Field()
+    ratings = scrapy.Field()
+    all_details = scrapy.Field()
