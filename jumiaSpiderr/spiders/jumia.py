@@ -18,7 +18,7 @@ class JumiaSpider(CrawlSpider):
         Rule(
             LinkExtractor(
                 allow=("[-]\w+\.html$"), deny=("/\w+/")),
-            callback="parse_extract_items", follow=True
+            callback="parse_extract_items"
         )
     )
 
